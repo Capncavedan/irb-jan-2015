@@ -12,7 +12,12 @@ class Stringalyzer
     !!@string.match(/(Jr|Sr|III)\Z/)
   end
 
-  def contains?(str)
-    !!@string.match(/#{str}/)
+  def contains?(candidate)
+    !!@string.match(/#{candidate}/)
   end
+
+  def case_insensitive_equal?(candidate)
+    !!@string.match(/#{candidate}/i)
+  end
+
 end
