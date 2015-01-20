@@ -125,4 +125,19 @@ RSpec.describe Stringalyzer do
       expect(stringalyzer.no_numerics?).to eq false
     end
   end
+
+
+  describe "#contains_any_of?" do
+    it "is true when there is overlap" do
+      stringalyzer = Stringalyzer.new "Sally threw the ball against the house 5 times"
+      looking_for = %w(threw ball house)
+      expect(stringalyzer.contains_any_of?(looking_for)).to eq true
+    end
+
+    it "is false when there is no overlap" do
+      stringalyzer = Stringalyzer.new "Sally went to the ice cream shop"
+      looking_for = %w(threw ball house)
+      expect(stringalyzer.contains_any_of?(looking_for)).to eq false
+    end
+  end
 end

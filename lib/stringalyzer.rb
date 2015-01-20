@@ -32,4 +32,8 @@ class Stringalyzer
     !@string.match(/\d+/)
   end
 
+  def contains_any_of?(candidates)
+    !!@string.match(/\b#{candidates.join('\b|\b')}\b/)
+  end
+
 end
