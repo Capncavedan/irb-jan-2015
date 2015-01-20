@@ -100,4 +100,29 @@ RSpec.describe Stringalyzer do
     end
   end
 
+
+  describe "#all_numeric?" do
+    it "is true when all digits" do
+      stringalyzer = Stringalyzer.new "999123456"
+      expect(stringalyzer.all_numeric?).to eq true
+    end
+
+    it "is false when some non-digits" do
+      stringalyzer = Stringalyzer.new "At least 999"
+      expect(stringalyzer.all_numeric?).to eq false
+    end
+  end
+
+
+  describe "#no_numerics?" do
+    it "is true when no digits" do
+      stringalyzer = Stringalyzer.new "Sally threw the ball"
+      expect(stringalyzer.no_numerics?).to eq true
+    end
+
+    it "is false when some digits" do
+      stringalyzer = Stringalyzer.new "Sally threw the ball 5 times"
+      expect(stringalyzer.no_numerics?).to eq false
+    end
+  end
 end

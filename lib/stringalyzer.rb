@@ -24,4 +24,12 @@ class Stringalyzer
     @string.sub(/\A\s+/, "").sub(/\s+\Z/, "").gsub(/\s+/, " ")
   end
 
+  def all_numeric?
+    !!@string.match(/\A\d+\Z/)
+  end
+
+  def no_numerics?
+    !@string.match(/\d+/)
+  end
+
 end
