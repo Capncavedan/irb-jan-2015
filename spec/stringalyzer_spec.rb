@@ -81,4 +81,23 @@ RSpec.describe Stringalyzer do
     end
   end
 
+
+
+  describe "#cleanup_whitespace" do
+    it "removes leading spaces" do
+      stringalyzer = Stringalyzer.new "   AAA Consulting"
+      expect(stringalyzer.cleanup_whitespace).to eq "AAA Consulting"
+    end
+
+    it "removes trailing spaces" do
+      stringalyzer = Stringalyzer.new "Zanzibar's Coffee   "
+      expect(stringalyzer.cleanup_whitespace).to eq "Zanzibar's Coffee"
+    end
+
+    it "removes multiple spaces" do
+      stringalyzer = Stringalyzer.new "Zanzibar's   Coffee      Adventure"
+      expect(stringalyzer.cleanup_whitespace).to eq "Zanzibar's Coffee Adventure"
+    end
+  end
+
 end

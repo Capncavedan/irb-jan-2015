@@ -20,4 +20,8 @@ class Stringalyzer
     !!@string.match(/#{candidate}/i)
   end
 
+  def cleanup_whitespace
+    @string.sub(/\A\s+/, "").sub(/\s+\Z/, "").gsub(/\s+/, " ")
+  end
+
 end
