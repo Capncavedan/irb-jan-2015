@@ -1,7 +1,7 @@
 class Stringalyzer
 
-  def add(a, b)
-    a + b
+  def self.name_prefix?(str)
+    !!(str.match /\A(Mr|Mrs|Ms|Miss|Dr)/)
   end
 
 end
