@@ -8,6 +8,7 @@ RSpec.describe Stringalyzer do
       expect(stringalyzer.name_prefix?).to eq true
     end
 
+
     it 'is true for Mrs' do
       stringalyzer = Stringalyzer.new "Mrs Olivia Jones"
       expect(stringalyzer.name_prefix?).to eq true
@@ -65,6 +66,11 @@ RSpec.describe Stringalyzer do
       stringalyzer = Stringalyzer.new "Olivia Jones loves fishing"
       expect(stringalyzer.contains?('soccer')).to eq false
     end
+
+    it "it matches case-insensitively" do
+      stringalyzer = Stringalyzer.new "Olivia Jones loves fishing"
+      expect(stringalyzer.contains?("FISHING")).to eq true
+    end
   end
 
 
@@ -107,6 +113,11 @@ RSpec.describe Stringalyzer do
       expect(stringalyzer.all_numeric?).to eq true
     end
 
+    it "is true when a leading zero" do
+      stringalyzer = Stringalyzer.new "0123456789"
+      expect(stringalyzer.all_numeric?).to eq true
+    end
+
     it "is false when some non-digits" do
       stringalyzer = Stringalyzer.new "At least 999"
       expect(stringalyzer.all_numeric?).to eq false
@@ -129,7 +140,7 @@ RSpec.describe Stringalyzer do
 
   describe "#contains_any_of?" do
     it "is true when there is overlap" do
-      stringalyzer = Stringalyzer.new "Sally threw the ball against the house 5 times"
+      stringalyzer = Stringalyzer.new "Sally threw the ball against the house-5 times"
       looking_for = %w(threw ball house)
       expect(stringalyzer.contains_any_of?(looking_for)).to eq true
     end
